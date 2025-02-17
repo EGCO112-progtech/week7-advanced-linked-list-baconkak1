@@ -18,7 +18,7 @@ int main( void )
 
    // loop while user does not choose 3
    while ( choice != 3 ) { 
-
+//hello merge
       switch ( choice ) { 
          case 1:
             printf( "%s", "Enter id and name: " );
