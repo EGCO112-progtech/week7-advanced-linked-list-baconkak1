@@ -2,12 +2,15 @@
 // Inserting and deleting nodes in a list
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "ll.h"
 
 int main( void )
 { 
    LLPtr startPtr = NULL; // initially there are no nodes
    unsigned int choice; // user's choice
    int item; // char entered by user
+   char name[50];
 
    instructions(); // display the menu
    printf( "%s", "? " );
@@ -18,10 +21,11 @@ int main( void )
 
       switch ( choice ) { 
          case 1:
-            printf( "%s", "Enter a number: " );
-            scanf( "%d", &item );
-            insert( &startPtr, item ); // insert item in list
+            printf( "%s", "Enter id and name: " );
+            scanf( "%d %s", &item, name);
+            insert( &startPtr, item, name); // insert item in list
             printList( startPtr );
+            printListr( startPtr );
             break;
          case 2: // delete an element
             // if list is not empty
@@ -33,6 +37,7 @@ int main( void )
                if ( deletes( &startPtr, item ) ) { // remove item
                   printf( "%d deleted.\n", item );
                   printList( startPtr );
+                  printListr( startPtr );
                } // end if
                else {
                   printf( "%d not found.\n\n", item );
@@ -53,5 +58,11 @@ int main( void )
       scanf( "%u", &choice );
    } // end while
   /* Clear all nodes at the end of nodes*/
+   if ( !isEmpty( startPtr ) ) { 
+      clear( &startPtr);
+   }
+   else {
+      puts( "List is empty.\n" );
+   }
    puts( "End of run." );
 } // end main
